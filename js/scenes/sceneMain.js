@@ -23,15 +23,17 @@ class SceneMain extends Phaser.Scene {
 
         this.player = this.add.sprite(game.config.width / 2, game.config.height - 100, 'player')
         this.player.setOrigin(0.5, 0.5)
-        Align.scaleToGameW(this.player, 0.08)
+        Align.scaleToGameW(this.player, 0.06)
 
         this.bullet = this.add.sprite()
         // this.enemy3 = this.add.sprite(12, 280, 'enemy1')
 
-        var enemy1 = new Enemy({ scene: this }, 12, 176, "enemy1")
-        var enemy2 = new Enemy({ scene: this }, 56, 176, "enemy2")
+        this.enemy1 = new Enemy({ scene: this }, 12, 176, "enemy1")
+        Align.scaleToGameW(this.enemy1, 0.01)
+
+        this.enemy2 = new Enemy({ scene: this }, 56, 176, "enemy2")
         
-        var enemy3 = new Enemy({ scene: this }, 100, 176, "enemy3")
+        this.enemy3 = new Enemy({ scene: this }, 100, 176, "enemy3")
 
         // enemy1.moveEnemy()
         // enemy1.moveEnemy()
@@ -59,14 +61,35 @@ class SceneMain extends Phaser.Scene {
         this.goRight = true
         console.log("vvvvvv")
         
-       this.time.addEvent({ delay: 150, callback: enemy1.moveEnemy, callbackScope: enemy1, loop: true })
-       this.time.addEvent({ delay: 150, callback: enemy2.moveEnemy, callbackScope: enemy2, loop: true })
-       this.time.addEvent({ delay: 500, callback: enemy1.checkTask, callbackScope: enemy1, loop: true })
-       this.time.addEvent({ delay: 500, callback: enemy2.checkTask, callbackScope: enemy2, loop: true })
-       this.time.addEvent({ delay: 500, callback: enemy3.checkTask, callbackScope: enemy3, loop: true })
-       this.time.addEvent({ delay: 150, callback: enemy3.moveEnemy, callbackScope: enemy3, loop: true })
+       
+       this.time.addEvent({ delay: 500, callback: this.enemy1.checkTask, callbackScope: this.enemy1, loop: true })
+       this.time.addEvent({ delay: 500, callback: this.enemy2.checkTask, callbackScope: this.enemy2, loop: true })
+       this.time.addEvent({ delay: 500, callback: this.enemy3.checkTask, callbackScope: this.enemy3, loop: true })
+       //this.time.addEvent({ delay: 500, callback: this.moveEnemies, callbackScope: this, loop: true })
+       this.time.addEvent({ delay: 500, callback: this.enemy3.moveEnemy, callbackScope: this.enemy3, loop: true })
+       this.time.addEvent({ delay: 500, callback: this.enemy2.moveEnemy, callbackScope: this.enemy2, loop: true })
+       this.time.addEvent({ delay: 509, callback: this.enemy1.moveEnemy, callbackScope: this.enemy1   , loop: true })
+
+       //this.time.addEvent({ delay: 150, callback: this.checkEnemy, callbackScope: this, loop: true })
 
     }
+    // checkEnemy()
+    // {
+    //     var p = this.enemy1.x - this.enemy2.x
+    //     var c = this.enemy2.x - this.enemy3.x
+    //     if (p != 44)
+    //     {
+    //         p = 44
+    //         this.enemy1.x = p
+    //         this.enemy2.x = p
+    //     }
+    //     if (c != 44)
+    //     {
+    //         c = 44
+    //         this.enemy1.x = c
+    //         this.enemy2.x = c
+    //     }
+    // }
 
     
     /*buttonPressed(params)   
@@ -78,23 +101,11 @@ class SceneMain extends Phaser.Scene {
 
     }*/
     
-    moveEnemy() {
-        if (this.goRight == true) {
-            if (this.enemy1.x > game.config.width-10) {
-                this.goRight = false
-                this.enemy1.y += 10
-            } else {
-                this.enemy1.x += 7
-            }
-
-        } else {
-            if (this.enemy1.x < 12) {
-                this.goRight = true
-                this.enemy1.y += 10
-            } else {
-                this.enemy1.x -= 7
-            }
-        }
+    moveEnemies() 
+    {
+        this.enemy3.moveEnemy()
+        this.enemy2.moveEnemy()
+        this.enemy1.moveEnemy()
     }
     movePlayerR() {
         // var Fx = this.player.x+20
