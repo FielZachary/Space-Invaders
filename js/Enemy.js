@@ -24,6 +24,13 @@ class Enemy extends Phaser.GameObjects.Container
 
         this.scene.add.existing(this);
         this.goRight = true
+        this.X = this.object.x
+        this.Y = this.object.Y
+        this.i = 0
+        this.counter = 1
+        this.EArray = [1, 2, 3, 4]
+        this.ESArray = ['moveSFX1', 'moveSFX2', 'moveSFX3', 'moveSFX4']
+        
         
     }
     moveEnemy() {
@@ -33,6 +40,20 @@ class Enemy extends Phaser.GameObjects.Container
                 this.object.y += 40
             } else {
                 this.object.x += 7
+                if (this.counter == this.EArray[this.i])
+                {
+                    emitter.emit(G.PLAY_SOUND, this.ESArray[this.i])
+                    this.counter++
+                    this.i++
+                    if(this.counter > 4)
+                    {
+                        this.counter = 1
+                    }
+                    if(this.i > 3)
+                    {
+                        this.i = 0
+                    }
+                }
             }
 
         } else {
@@ -54,7 +75,7 @@ class Enemy extends Phaser.GameObjects.Container
     eshootBullet() {
         this.ebulletSetUp()
         this.scene.tweens.add({ targets: this.ebullet, duration: 2000, y: game.config.height+100 });
-        emitter.emit(G.PLAY_SOUND, 'bulletSFX')
+        //emitter.emit(G.PLAY_SOUND, 'bulletSFX')
     }
     checkTask()
     {

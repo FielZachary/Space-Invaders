@@ -30,7 +30,12 @@ class SceneLoad extends Phaser.Scene {
     this.load.image('enemy2', 'images/enemy2.png')
     this.load.image('enemy3', 'images/enemy3.png')
         
-    this.load.audio('bulletSFX', 'audio/shoot.wav')
+    this.load.audio('bulletSFX', 'audio/invaderkilled.wav')
+    this.load.audio('moveSFX1', 'audio/fastinvader1.wav')
+    this.load.audio('moveSFX2', 'audio/fastinvader2.wav')
+    this.load.audio('moveSFX3', 'audio/fastinvader3.wav')
+    this.load.audio('moveSFX4', 'audio/fastinvader4.wav')
+
 
     }
 

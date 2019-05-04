@@ -31,9 +31,9 @@ class SceneMain extends Phaser.Scene {
         this.enemy1 = new Enemy({ scene: this }, 12, 176, "enemy1")
         Align.scaleToGameW(this.enemy1, 0.01)
 
-        this.enemy2 = new Enemy({ scene: this }, 56, 176, "enemy2")
+        this.enemy2 = new Enemy({ scene: this }, 54, 176, "enemy2")
         
-        this.enemy3 = new Enemy({ scene: this }, 100, 176, "enemy3")
+        this.enemy3 = new Enemy({ scene: this }, 96, 176, "enemy3")
 
         // enemy1.moveEnemy()
         // enemy1.moveEnemy()
@@ -68,7 +68,7 @@ class SceneMain extends Phaser.Scene {
        //this.time.addEvent({ delay: 500, callback: this.moveEnemies, callbackScope: this, loop: true })
        this.time.addEvent({ delay: 500, callback: this.enemy3.moveEnemy, callbackScope: this.enemy3, loop: true })
        this.time.addEvent({ delay: 500, callback: this.enemy2.moveEnemy, callbackScope: this.enemy2, loop: true })
-       this.time.addEvent({ delay: 509, callback: this.enemy1.moveEnemy, callbackScope: this.enemy1   , loop: true })
+       this.time.addEvent({ delay: 500, callback: this.enemy1.moveEnemy, callbackScope: this.enemy1   , loop: true })
 
        //this.time.addEvent({ delay: 150, callback: this.checkEnemy, callbackScope: this, loop: true })
 
@@ -100,6 +100,16 @@ class SceneMain extends Phaser.Scene {
         model.musicOn = false
 
     }*/
+    destroyEnemies()
+    {
+        let r1 = this.bullet.getBounds();
+        let r2 = this.enemy1.getBounds();
+        if( Phaser.Geom.Intersects.RectangleToRectangle( r1, r2)){
+            console.log('aoiwhrohieroajdklajfkohakfhjwlfhkl;afhjldsfhaklfh')
+        }else{
+            console.log('phphphphphpphpphphphphphphph0phphphphphphphphphphphphphphphphphphlpphphphphph')
+        }
+    }
     
     moveEnemies() 
     {
