@@ -1,5 +1,5 @@
 WebFontConfig = {
-google: { families: ["Fresca","Flamenco","Indie Flower",'Anton', 'Lilita One', 'Baloo Chettan'] }
+google: { families: ["Fresca","Flamenco","Indie Flower",'Anton', 'Lilita One', 'Baloo Chettan', "Fairfax"] }
 };
 (function() {
 var wf = document.createElement('script');

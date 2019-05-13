@@ -9,6 +9,7 @@ class Enemy extends Phaser.GameObjects.Container {
 
         this.object = this.scene.physics.add.sprite(xS, yS, sprite)
         Align.scaleToGameW(this.object, 0.05)
+        this.eBG = this.scene.physics.add.group()
 
 
         this.uiGrid = new AlignGrid({ scene: this, rows: 20, cols: 20 })
@@ -75,15 +76,18 @@ class Enemy extends Phaser.GameObjects.Container {
         this.X = this.object.x
     }
     ebulletSetUp() {
-        this.ebullet = this.scene.add.sprite(this.object.x, this.object.y + 40, 'bullet')
+        var ebullet = this.scene.add.sprite(this.object.x, this.object.y + 40, 'bullet')
+        this.eBG.add(ebullet)
         Align.scaleToGameW(this.ebullet, 0.01)
     }
     ebullet2SetUp() {
         this.ebullet2 = this.add.sprite(300, -30, 'bullet')
     }
     eshootBullet() {
-        this.ebulletSetUp()
-        this.scene.tweens.add({ targets: this.ebullet, duration: 2000, y: game.config.height + 100 });
+        var ebullet = this.scene.add.sprite(this.object.x, this.object.y + 40, 'bullet')
+        this.eBG.add(ebullet)
+        Align.scaleToGameW(ebullet, 0.01)
+        this.scene.tweens.add({ targets: ebullet, duration: 2000, y: game.config.height + 100 });
         //emitter.emit(G.PLAY_SOUND, 'bulletSFX')
     }
     checkTask() {
