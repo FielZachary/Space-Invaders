@@ -8,6 +8,7 @@ class Enemy extends Phaser.GameObjects.Container {
         //this.mediaManager = new MediaManager({ scene: this })
 
         this.object = this.scene.physics.add.sprite(xS, yS, sprite)
+        //var invader1 = this.add.group({ key: 'invader1', frame: 0, repeat: 13, setXY: { x: 32, y: 100, stepX: 40 } });
         Align.scaleToGameW(this.object, 0.05)
         this.eBG = this.scene.physics.add.group()
 
