@@ -33,13 +33,13 @@ class Enemy extends Phaser.GameObjects.Container {
     {
         console.log('Wow it acctually worked')
     }
-    moveEnemy() {
-        if (this.goRight == true) {
-            if (this.object.x > game.config.width - 50) {
-                this.goRight = false
-                this.object.y += 40
-            } else {
-                this.object.x += 7
+    moveEnemyR() {
+        //if (this.goRight == true) {
+            // if (this.object.x > game.config.width - 50) {
+            //     this.goRight = false
+            //     this.object.y += 40
+            // } else {
+                this.object.x += 5
                 if (this.counter == this.EArray[this.i]) {
                     emitter.emit(G.PLAY_SOUND, this.ESArray[this.i])
                     this.counter++
@@ -51,31 +51,33 @@ class Enemy extends Phaser.GameObjects.Container {
                         this.i = 0
                     }
                 }
-            }
+            //}
 
-        } else {
-            if (this.object.x < 20) {
-                this.goRight = true
-                this.object.y += 40
+    
+    
+        
+        this.Y = this.object.y
+        this.X = this.object.x
+}
+moveEnemyL()
+{
 
-            } else {
-                this.object.x -= 7
-                if (this.counter == this.EArray[this.i]) {
-                    emitter.emit(G.PLAY_SOUND, this.ESArray[this.i])
-                    this.counter++
-                    this.i++
-                    if (this.counter > 4) {
-                        this.counter = 1
-                    }
-                    if (this.i > 3) {
-                        this.i = 0
-                    }
+        
+            this.object.x -= 5
+            if (this.counter == this.EArray[this.i]) {
+                emitter.emit(G.PLAY_SOUND, this.ESArray[this.i])
+                this.counter++
+                this.i++
+                if (this.counter > 4) {
+                    this.counter = 1
+                }
+                if (this.i > 3) {
+                    this.i = 0
                 }
             }
         }
-        this.Y = this.object.y
-        this.X = this.object.x
-    }
+    
+
     ebulletSetUp() {
         var ebullet = this.scene.add.sprite(this.object.x, this.object.y + 40, 'bullet')
         this.eBG.add(ebullet)
@@ -93,7 +95,7 @@ class Enemy extends Phaser.GameObjects.Container {
     }
     checkTask() {
         var r = Math.floor(Math.random() * 100)
-        if (r < 4) {
+        if (r < 1) {
             this.eshootBullet()
         }
         else {
